@@ -1,0 +1,12 @@
+string_set[   1]:   10159970873491820195 0x6ce6b8->"1"
+string_set[   5]:    4551451650890805270 0x6ce948->"2"
+                     9670513292228268826 0x6ce848->""/usr/include/stdc-predef.h""
+                     8992511613177483825 0x6ce758->""<built-in>""
+string_set[   7]:    4038071199236763861 0x6ce668->"#"
+string_set[   8]:   13985887974751908322 0x6ce7e8->""<command-line>""
+string_set[   9]:   16215888864653804456 0x6ce8b8->"4"
+                     8248777770799913213 0x6ce868->"3"
+string_set[  10]:    7884275942752591810 0x6ce708->""01-hello.str""
+load_factor = 0.818
+bucket_count = 11
+max_bucket_size = 3
