@@ -1,0 +1,5 @@
+checksource: line length > 144 characters
+   file "README": 1 errors: line 4
+checksource: line length > 72 characters
+   file "README": 1 errors: line 4
+checksource: TOTAL COMPLAINTS: 2
