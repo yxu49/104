@@ -76,8 +76,8 @@ int main(int argc, char **argv)
     char *outputfilename = replaceext(inputfile, (char *)".str");
     FILE *outputfile = fopen(outputfilename, "w"); //create output file
     FILE *cpreprocess = popen(pp, "r");
-    char str[1024];
-    while (fgets(str, 1024, cpreprocess) != NULL) //getting lines from cpp output
+    char str[100];
+    while (fgets(str, 100, cpreprocess) != NULL) //getting lines from cpp output
     {
         char *token;
         char *rest = str;
@@ -88,5 +88,5 @@ int main(int argc, char **argv)
     fclose(outputfile);
     fclose(cpreprocess);
     delete (outputfilename);
-    return EXIT_SUCCESS;
+    return 0;
 }
