@@ -54,7 +54,7 @@ int main(int argc, char **argv)
     char *inputpath = argv[optind];
     char *inputfile = basename(argv[optind]);
     std::string inputfilestr = std::string(inputfile);
-    
+    static const size_t npos = -1;
     if (inputfilestr.find(".oc", 0) == npos)
         fprintf(stderr, "file extension mismatched\n");
     ifstream fin(inputpath);
