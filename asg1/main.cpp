@@ -13,7 +13,8 @@ char *replaceext(char *orig, char *newext)
 //return char pointer with newext
 {
     char *newstr = new char[strlen(orig) + 1];
-    size_t dotind = orig.find(".", 0);
+    std::string origstr = std::string(orig);
+    size_t dotind = origstr.find(".", 0);
     strncpy(newstr, orig, dotind);
     strcat(newstr, newext);
     return newstr;
@@ -67,9 +68,10 @@ int main(int argc, char **argv)
     }
     else
         prepro = prepro + inputpath;
+    const char *pp = prepro.c_str();
     char *outputfilename = replaceext(inputfile, (char *)".str");
     FILE *outputfile = fopen(outputfilename, "w"); //create output file
-    FILE *cpreprocess = popen(prepro, "r");
+    FILE *cpreprocess = popen(pp, "r");
     char str[100];
     while (fgets(str, 100, cpreprocess) != NULL) //getting lines from cpp output
     {
