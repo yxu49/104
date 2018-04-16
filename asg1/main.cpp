@@ -48,7 +48,7 @@ int main(int argc, char **argv)
       set_debugflags(optarg);
       break;
     case '?':
-      if ( == 'D')
+      if ( optopt== 'D')
         fprintf(stderr, "Option -D require argument");
       else if (optopt == '@')
         fprintf(stderr, "Option -@ require argument");
