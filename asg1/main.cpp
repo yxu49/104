@@ -51,6 +51,8 @@ int main(int argc, char **argv)
         fprintf(stderr, "no input file is passed\n");
         exit(1);
     }
+    (void)yy_flex_debug; 
+    (void)yydebug;
     char *inputpath = argv[optind];
     char *inputfile = basename(argv[optind]);
     std::string inputfilestr = std::string(inputfile);
