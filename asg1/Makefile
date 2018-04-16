@@ -1,5 +1,5 @@
 ALLSRC = main.cpp string_set.cpp auxlib.cpp
-GPP = g++ -std=gnu++11 -g -O0 -Wall -Wextra
+GPP = g++ -std=gnu++17 -g -O0 -Wall -Wextra -Wold-style-cast
 EXECBIN=oc
 
 all:${EXECBIN}
