@@ -1,0 +1,12 @@
+string_set[   1]:   10159970873491820195 0xb67678->"1"
+string_set[   5]:    4551451650890805270 0xb67958->"2"
+                     9670513292228268826 0xb67888->""/usr/include/stdc-predef.h""
+                     8992511613177483825 0xb67738->""<built-in>""
+string_set[   6]:    6925843303706482238 0xb67628->""92-uncomment.oc""
+string_set[   7]:    4038071199236763861 0xb67608->"#"
+string_set[   8]:   13985887974751908322 0xb677c8->""<command-line>""
+string_set[   9]:   16215888864653804456 0xb678c8->"4"
+                     8248777770799913213 0xb678a8->"3"
+load_factor = 0.818
+bucket_count = 11
+max_bucket_size = 3
