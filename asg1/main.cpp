@@ -22,7 +22,7 @@ char *replaceext(char *orig, const char* newext)
     strcat(newstr, newext);
     return newstr;
 }
-void tokenize(){
+void tokenize(FILE *cpreprocess){
  char str[100];
     while (fgets(str, 100, cpreprocess) != NULL) //getting lines from cpp output
     {
@@ -92,7 +92,7 @@ int main(int argc, char **argv)
     char *outputfilename = replaceext(inputfile,ext);
     FILE *outputfile = fopen(outputfilename, "w"); //create output file
     FILE *cpreprocess = popen(pp, "r");
-   tokenize();
+   tokenize(cpreprocess);
     string_set::dump(outputfile); //dump cpp output into outputfile
     fclose(outputfile);
     fclose(cpreprocess);
