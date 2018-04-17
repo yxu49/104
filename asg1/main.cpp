@@ -24,7 +24,7 @@ char *replaceext(char *orig, const char* newext)
 }
 void tokenize(FILE *cpreprocess){
  char str[100];
-    while (fgets(str, 100, cpreprocess) != NULL) //getting lines from cpp output
+    while (fgets(str, 100, cpreprocess) != EOF) //getting lines from cpp output
     {
         char *token;
         char *rest = str;
