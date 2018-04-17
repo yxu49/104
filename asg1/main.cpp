@@ -75,7 +75,7 @@ int main(int argc, char **argv)
     else
         prepro = prepro + inputpath;
     const char *pp = prepro.c_str();
-    string extenstion = ".str";
+    std::string extenstion = ".str";
     const char *ext = extension.c_str();
     char *outputfilename = replaceext(inputfile, ext);
     FILE *outputfile = fopen(outputfilename, "w"); //create output file
