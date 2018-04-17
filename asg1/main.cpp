@@ -11,8 +11,7 @@
 #include "string_set.h"
 #include "auxlib.h"
 
-
-char *replaceext(char *orig, const char* newext)
+char *replaceext(char *orig, const char *newext)
 //return char pointer with newext
 {
     char *newstr = new char[strlen(orig) + 1];
@@ -22,9 +21,10 @@ char *replaceext(char *orig, const char* newext)
     strcat(newstr, newext);
     return newstr;
 }
-void tokenize(FILE *cpreprocess){
- char str[100];
-    while (fgets(str, 100, cpreprocess) != NULL) //getting lines from cpp output
+void tokenize(FILE *cpreprocess)
+{   //tokenize the content
+    char str[100];
+    while (fgets(str, 100, cpreprocess) != NULL)
     {
         char *token;
         char *rest = str;
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "no input file is passed\n");
         exit(1);
     }
-    (void)yy_flex_debug; 
+    (void)yy_flex_debug;
     (void)yydebug;
     char *inputpath = argv[optind];
     char *inputfile = basename(argv[optind]);
@@ -89,10 +89,10 @@ int main(int argc, char **argv)
     const char *pp = prepro.c_str();
     string extension = ".str";
     const char *ext = extension.c_str();
-    char *outputfilename = replaceext(inputfile,ext);
+    char *outputfilename = replaceext(inputfile, ext);
     FILE *outputfile = fopen(outputfilename, "w"); //create output file
     FILE *cpreprocess = popen(pp, "r");
-   tokenize(cpreprocess);
+    tokenize(cpreprocess);
     string_set::dump(outputfile); //dump cpp output into outputfile
     fclose(outputfile);
     fclose(cpreprocess);
