@@ -4,12 +4,13 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
 #include <unistd.h>
 #include "string_set.h"
 #include "auxlib.h"
 
-char *replaceext(char *orig, char *newext)
+
+char *replaceext(char *orig, char* newext)
 //return char pointer with newext
 {
     char *newstr = new char[strlen(orig) + 1];
@@ -73,7 +74,8 @@ int main(int argc, char **argv)
     else
         prepro = prepro + inputpath;
     const char *pp = prepro.c_str();
-    char *outputfilename = replaceext(inputfile, /* (char *) */".str");
+    char *ext = ".str";
+    char *outputfilename = replaceext(inputfile, ext);
     FILE *outputfile = fopen(outputfilename, "w"); //create output file
     FILE *cpreprocess = popen(pp, "r");
     char str[100];
