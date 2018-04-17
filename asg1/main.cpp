@@ -75,7 +75,8 @@ int main(int argc, char **argv)
     else
         prepro = prepro + inputpath;
     const char *pp = prepro.c_str();
-    char *ext = ".str";
+    string extenstion = ".str";
+    const char *ext = extension.c_str();
     char *outputfilename = replaceext(inputfile, ext);
     FILE *outputfile = fopen(outputfilename, "w"); //create output file
     FILE *cpreprocess = popen(pp, "r");
