@@ -1,3 +1,4 @@
+//Yijiong Xu Tian Qiu
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -10,8 +11,7 @@
 #include "string_set.h"
 #include "auxlib.h"
 
-
-char *replaceext(char *orig, const char* newext)
+char *replaceext(char *orig, const char *newext)
 //return char pointer with newext
 {
     char *newstr = new char[strlen(orig) + 1];
@@ -21,9 +21,20 @@ char *replaceext(char *orig, const char* newext)
     strcat(newstr, newext);
     return newstr;
 }
-int main(int argc, char **argv)
+void tokenize()
 {
-    int opt = 0, yy_flex_debug = 0, yydebug = 0, Dflag = 0;
+    char str[100];
+    while (fgets(str, 100, cpreprocess) != NULL) //getting lines from cpp output
+    {
+        char *token;
+        char *rest = str;
+        while ((token = strtok_r(rest, " \n\t", &rest)))
+            string_set::intern(token);
+    }
+}
+const char *get_opts (int argc, char **argv) {
+
+int opt = 0, yy_flex_debug = 0, yydebug = 0, Dflag = 0;
     char *cpp_opt;
     opt = getopt(argc, argv, "lyD:@:");
     while (opt != -1)
@@ -53,10 +64,16 @@ int main(int argc, char **argv)
         fprintf(stderr, "no input file is passed\n");
         exit(1);
     }
-    (void)yy_flex_debug; 
+    (void)yy_flex_debug;
     (void)yydebug;
     char *inputpath = argv[optind];
-    char *inputfile = basename(argv[optind]);
+    return argv[optind];
+}
+
+int main(int argc, char **argv)
+{
+    const char* filename = get_opts (argc, argv);
+    char *inputfile = basename(filename);
     std::string inputfilestr = std::string(inputfile);
     static const size_t npos = -1;
     if (inputfilestr.find(".oc", 0) == npos)
@@ -77,17 +94,10 @@ int main(int argc, char **argv)
     const char *pp = prepro.c_str();
     string extension = ".str";
     const char *ext = extension.c_str();
-    char *outputfilename = replaceext(inputfile,ext);
+    char *outputfilename = replaceext(inputfile, ext);
     FILE *outputfile = fopen(outputfilename, "w"); //create output file
     FILE *cpreprocess = popen(pp, "r");
-    char str[100];
-    while (fgets(str, 100, cpreprocess) != NULL) //getting lines from cpp output
-    {
-        char *token;
-        char *rest = str;
-        while ((token = strtok_r(rest, " \n\t", &rest)))
-            string_set::intern(token);
-    }
+    tokenize();
     string_set::dump(outputfile); //dump cpp output into outputfile
     fclose(outputfile);
     fclose(cpreprocess);
