@@ -38,21 +38,6 @@ IDENT           ({LETTER}({LETTER}|{DIGIT})*)
 [ \t]+          { }
 \n              { lexer::newline(); }
 
-"if"            { return yylval_token (TOK_IF); }
-"else"          { return yylval_token (TOK_ELSE); }
-"while"         { return yylval_token (TOK_WHILE); }
-"return"        { return yylval_token (TOK_RETURN); }
-"int"           { return yylval_token (TOK_INT); }
-"string"        { return yylval_token (TOK_STRING); }
-"struct"        { return yylval_token (TOK_STRUCT); }
-"void"          { return yylval_token (TOK_VOID); }
-"new"           { return yylval_token (TOK_NEW); }
-"null"          { return yylval_token (TOK_NULL); }
-"not"           { return yylval_token (TOK_NOT);}
-{IDENT}         { return yylval_token (TOK_IDENT); }
-{INTEGER}       { return yylval_token (TOK_INTCON); }
-{CHAR}          { return yylval_token (TOK_CHR); }
-{STRING}        { return yylval_token (TOK_STRINGCON); }
 "+"             { return yylval_token ('+'); }
 "-"             { return yylval_token ('-'); }
 "*"             { return yylval_token ('*'); }
@@ -77,6 +62,21 @@ IDENT           ({LETTER}({LETTER}|{DIGIT})*)
 ","             { return yylval_token (','); }
 "."             { return yylval_token ('.'); }
 "[]"            { return yylval_token (TOK_NEWARRAY);}
+"if"            { return yylval_token (TOK_IF); }
+"else"          { return yylval_token (TOK_ELSE); }
+"while"         { return yylval_token (TOK_WHILE); }
+"return"        { return yylval_token (TOK_RETURN); }
+"int"           { return yylval_token (TOK_INT); }
+"string"        { return yylval_token (TOK_STRING); }
+"struct"        { return yylval_token (TOK_STRUCT); }
+"void"          { return yylval_token (TOK_VOID); }
+"new"           { return yylval_token (TOK_NEW); }
+"null"          { return yylval_token (TOK_NULL); }
+"not"           { return yylval_token (TOK_NOT);}
+{IDENT}         { return yylval_token (TOK_IDENT); }
+{INTEGER}       { return yylval_token (TOK_INTCON); }
+{CHAR}          { return yylval_token (TOK_CHR); }
+{STRING}        { return yylval_token (TOK_STRINGCON); }
 
 .               { lexer::badchar (*yytext); }
 
