@@ -1,9 +1,10 @@
-// $Id: string_set.cpp,v 1.1 2017/04/19 03:49:14 silui Exp $
+// $Id: string_set.cpp,v 1.3 2017-10-05 16:39:39-07 - - $
 
 #include <string>
 #include <unordered_set>
 using namespace std;
 
+#include "auxlib.h"
 #include "string_set.h"
 
 unordered_set<string> string_set::set;
@@ -14,6 +15,8 @@ string_set::string_set() {
 
 const string* string_set::intern (const char* string) {
    auto handle = set.insert (string);
+   DEBUGF ('s', "inserted \"%s\" %s\n", handle.first->c_str(),
+           handle.second ? "newly inserted" : "already there");
    return &*handle.first;
 }
 
@@ -28,7 +31,7 @@ void string_set::dump (FILE* out) {
       for (auto itor = set.cbegin (bucket);
            itor != set.cend (bucket); ++itor) {
          if (need_index) fprintf (out, "string_set[%4zu]: ", bucket);
-                    else fprintf (out, "           %4s   ", "");
+                    else fprintf (out, "          %4s   ", "");
          need_index = false;
          const string* str = &*itor;
          fprintf (out, "%22zu %p->\"%s\"\n", hash_fn(*str),
@@ -39,5 +42,3 @@ void string_set::dump (FILE* out) {
    fprintf (out, "bucket_count = %zu\n", set.bucket_count());
    fprintf (out, "max_bucket_size = %zu\n", max_bucket_size);
 }
-
-

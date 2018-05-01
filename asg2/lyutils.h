@@ -1,4 +1,4 @@
-// $Id: lyutils.h,v 1.10 2016-10-06 16:42:53-07 - - $
+// $Id: lyutils.h,v 1.6 2017-10-05 16:39:39-07 - - $
 
 #ifndef __UTILS_H__
 #define __UTILS_H__
@@ -13,6 +13,8 @@ using namespace std;
 
 #include "astree.h"
 #include "auxlib.h"
+
+#define YYEOF 0
 
 extern FILE* yyin;
 extern char* yytext; 
@@ -44,8 +46,8 @@ struct parser {
    static const char* get_tname (int symbol);
 };
 
-#define YYSTYPE astree*
+#define YYSTYPE_IS_DECLARED
+typedef astree* YYSTYPE;
 #include "yyparse.h"
 
 #endif
-

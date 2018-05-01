@@ -1,4 +1,4 @@
-// $Id: astree.cpp,v 1.8 2016-09-21 17:13:03-07 - - $
+// $Id: astree.cpp,v 1.15 2017-10-05 16:39:39-07 - - $
 
 #include <assert.h>
 #include <inttypes.h>
@@ -58,7 +58,7 @@ void astree::dump_tree (FILE* outfile, int depth) {
    dump_node (outfile);
    fprintf (outfile, "\n");
    for (astree* child: children) child->dump_tree (outfile, depth + 1);
-   fflush (NULL);
+   fflush (nullptr);
 }
 
 void astree::dump (FILE* outfile, astree* tree) {

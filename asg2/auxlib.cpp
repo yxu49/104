@@ -1,3 +1,5 @@
+// $Id: auxlib.cpp,v 1.3 2017-10-11 14:28:14-07 - - $
+
 #include <assert.h>
 #include <errno.h>
 #include <libgen.h>
@@ -19,7 +21,7 @@ bool alldebugflags = false;
 static void eprint_signal (const char* kind, int signal) {
    eprintf (", %s %d", kind, signal);
    const char* sigstr = strsignal (signal);
-   if (sigstr != NULL) fprintf (stderr, " %s", sigstr);
+   if (sigstr != nullptr) fprintf (stderr, " %s", sigstr);
 }
 
 void eprint_status (const char* command, int status) {
@@ -45,14 +47,14 @@ void eprint_status (const char* command, int status) {
 
 void veprintf (const char* format, va_list args) {
    assert (exec::execname.size() != 0);
-   assert (format != NULL);
-   fflush (NULL);
+   assert (format != nullptr);
+   fflush (nullptr);
    if (strstr (format, "%:") == format) {
       fprintf (stderr, "%s: ", exec::execname.c_str());
       format += 2;
    }
    vfprintf (stderr, format, args);
-   fflush (NULL);
+   fflush (nullptr);
 }
 
 void eprintf (const char* format, ...) {
@@ -77,38 +79,36 @@ void syserrprintf (const char* object) {
 void __stubprintf (const char* file, int line, const char* func,
                    const char* format, ...) {
    va_list args;
-   fflush (NULL);
+   fflush (nullptr);
    printf ("%s: %s[%d] %s: ", exec::execname.c_str(), file, line, func);
    va_start (args, format);
    vprintf (format, args);
    va_end (args);
-   fflush (NULL);
+   fflush (nullptr);
 }     
 
-
+
 void set_debugflags (const char* flags) {
    debugflags = flags;
-   assert (debugflags != NULL);
-   if (strchr (debugflags, '@') != NULL) alldebugflags = true;
+   assert (debugflags != nullptr);
+   if (strchr (debugflags, '@') != nullptr) alldebugflags = true;
    DEBUGF ('x', "Debugflags = \"%s\", all = %d\n",
            debugflags, alldebugflags);
 }
 
 bool is_debugflag (char flag) {
-   return alldebugflags or strchr (debugflags, flag) != NULL;
+   return alldebugflags or strchr (debugflags, flag) != nullptr;
 }
 
 void __debugprintf (char flag, const char* file, int line,
                     const char* func, const char* format, ...) {
    va_list args;
    if (not is_debugflag (flag)) return;
-   fflush (NULL);
+   fflush (nullptr);
    va_start (args, format);
    fprintf (stderr, "DEBUGF(%c): %s[%d] %s():\n",
              flag, file, line, func);
    vfprintf (stderr, format, args);
    va_end (args);
-   fflush (NULL);
+   fflush (nullptr);
 }
-
-

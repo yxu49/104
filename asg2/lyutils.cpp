@@ -1,4 +1,4 @@
-// $Id: lyutils.cpp,v 1.11 2016-10-06 16:42:53-07 - - $
+// $Id: lyutils.cpp,v 1.3 2016-10-06 16:42:35-07 - - $
 
 #include <assert.h>
 #include <ctype.h>
@@ -76,4 +76,3 @@ void yyerror (const char* message) {
    assert (not lexer::filenames.empty());
    errllocprintf (lexer::lloc, "%s\n", message);
 }
-

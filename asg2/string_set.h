@@ -1,4 +1,4 @@
-// $Id: string_set.h,v 1.2 2016-08-18 15:13:48-07 - - $
+// $Id: string_set.h,v 1.2 2016-08-18 15:12:57-07 - - $
 
 #ifndef __STRING_SET__
 #define __STRING_SET__
@@ -17,5 +17,3 @@ struct string_set {
 };
 
 #endif
-
-
