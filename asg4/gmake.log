@@ -1,0 +1,10 @@
+bison --defines=yyparse.h --output=yyparse.cpp --xml parser.y
+parser.y: conflicts: 28 shift/reduce
+xsltproc /usr/share/bison/xslt/xml2xhtml.xsl yyparse.xml >yyparse.html
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -c astree.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -c lyutils.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -c symboltable.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -c main.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -Wno-sign-compare -c yylex.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -c yyparse.cpp
+g++ -g -O0 -Wall -Wextra -std=gnu++14 -ooc astree.o lyutils.o string_set.o auxlib.o symboltable.o main.o yylex.o yyparse.o
